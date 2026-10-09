@@ -1,0 +1,53 @@
+{
+  "name": "hieroglyph-tags",
+  "version": "0.1.0",
+  "description": "Write Manuel de Codage in HTML with a native hieroglyph Web Component.",
+  "type": "module",
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/arsaccol/hieroglyph-tags.git"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "vendor/hierojax",
+    "scripts",
+    "demo",
+    "tsconfig.json",
+    "README.md",
+    "THIRD_PARTY.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "./dist/index.js"
+  ],
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "vitest run",
+    "test:browser": "npm run build && node test/browser.mjs",
+    "lint": "tsc --noEmit && tsc -p tsconfig.test.json",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.0.0",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  }
+}
