@@ -2,36 +2,102 @@
 <html lang="en">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>hieroglyph-tags · Manuel de Codage in HTML</title>
+<title>hieroglyph-tags · HTML playground</title>
 <style>
   :root { color-scheme: light dark; font: 18px/1.6 system-ui; }
-  body { max-width: 780px; margin: 3rem auto; padding: 0 1.5rem 5rem; }
-  h1 { line-height: 1.15; } code { font-size: .85em; }
-  .examples { display: grid; gap: 2rem; margin: 2rem 0; }
-  .example { display: flex; align-items: center; justify-content: space-between; gap: 2rem; border-bottom: 1px solid GrayText; padding-bottom: 1rem; }
-  .example hieroglyph-tag { font-size: 48px; }
-  input { padding: .6rem; font: inherit; max-width: 100%; }
-  #editable { font-size: 48px; margin: 1rem; }
+  * { box-sizing: border-box; }
+  body { max-width: 1280px; margin: 2.5rem auto; padding: 0 1.5rem 4rem; }
+  h1 { line-height: 1.15; margin-bottom: .75rem; }
+  .intro { max-width: 850px; }
+  .playground { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem; margin-top: 2rem; }
+  .panel { min-width: 0; }
+  .panel-header { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; gap: 1rem; }
+  .panel-header h2, .panel-header label { margin: 0; font-size: 1rem; font-weight: 650; }
+  button { font: inherit; font-size: .8rem; padding: .35rem .65rem; cursor: pointer; }
+  textarea, .preview { width: 100%; min-height: 660px; border: 1px solid GrayText; border-radius: .5rem; padding: 1.25rem; background: Canvas; color: CanvasText; }
+  textarea { display: block; resize: vertical; font: 14px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; tab-size: 2; }
+  textarea:focus-visible { outline: 2px solid Highlight; outline-offset: 3px; }
+  .preview { overflow-wrap: anywhere; overflow: auto; padding-bottom: 3rem; }
+  .preview h2 { margin-top: 0; font-size: 1.3rem; }
+  .preview .examples { margin: 1.5rem 0; }
+  .preview .examples p { margin: 1.5rem 0; }
+  .preview .examples hieroglyph-tag { font-size: 48px; }
+  .hint { color: GrayText; font-size: .85rem; margin-top: 1rem; }
+  footer { margin-top: 2rem; font-size: .8rem; }
+  @media (max-width: 800px) {
+    body { margin-top: 1.5rem; padding: 0 1rem 3rem; }
+    .playground { grid-template-columns: minmax(0, 1fr); }
+    textarea { min-height: 420px; }
+    .preview { min-height: 300px; }
+  }
 </style>
 <script type="module" src="../dist/index.js"></script>
-<h1>Write MdC. Read hieroglyphs.</h1>
-<p>A native HTML element powered by HieroJax. Hover a composition or Tab to its buttons to use <strong>Copy MdC</strong> and <strong>Copy Unicode</strong>. Unicode copies include composition controls.</p>
-<div class="examples">
-  <div class="example"><code>A1:O1</code><hieroglyph-tag>A1:O1</hieroglyph-tag></div>
-  <div class="example"><code>W24*Z7</code><hieroglyph-tag>W24*Z7</hieroglyph-tag></div>
-  <div class="example"><code>A1*(W24:Z7)</code><hieroglyph-tag>A1*(W24:Z7)</hieroglyph-tag></div>
-  <div class="example"><code>anx</code><hieroglyph-tag>anx</hieroglyph-tag></div>
-  <div class="example"><code>A1 / W24*Z7 (two lines)</code><hieroglyph-tag>A1
-W24*Z7</hieroglyph-tag></div>
-</div>
-<p>The inscription contains <hieroglyph-tag>A1:O1</hieroglyph-tag> within an ordinary paragraph.</p>
-<label for="source">Try an MdC composition (try A999 for an error):</label><br>
-<input id="source" value="A1:O1" spellcheck="false">
-<hieroglyph-tag id="editable">A1:O1</hieroglyph-tag>
-<p>Invalid input stays local: <hieroglyph-tag>A999</hieroglyph-tag></p>
+<h1>Write HTML. Read hieroglyphs.</h1>
+<p class="intro">Edit the HTML on the left and see it rendered on the right. Write Manuel de Codage inside <code>&lt;hieroglyph-tag&gt;</code> to compose Egyptian hieroglyphs.</p>
+<main class="playground">
+  <section class="panel" aria-labelledby="html-label">
+    <div class="panel-header">
+      <label id="html-label" for="html-source">HTML editor</label>
+      <button id="reset" type="button">Reset example</button>
+    </div>
+    <textarea id="html-source" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="editor-hint">&lt;h2&gt;Hieroglyphs in ordinary HTML&lt;/h2&gt;
+
+&lt;p&gt;
+  The inscription reads
+  &lt;hieroglyph-tag&gt;A1:O1&lt;/hieroglyph-tag&gt;.
+&lt;/p&gt;
+
+&lt;div class="examples"&gt;
+  &lt;p&gt;Vertical: &lt;hieroglyph-tag&gt;A1:O1&lt;/hieroglyph-tag&gt;&lt;/p&gt;
+  &lt;p&gt;Horizontal: &lt;hieroglyph-tag&gt;W24*Z7&lt;/hieroglyph-tag&gt;&lt;/p&gt;
+  &lt;p&gt;Nested: &lt;hieroglyph-tag&gt;A1*(W24:Z7)&lt;/hieroglyph-tag&gt;&lt;/p&gt;
+  &lt;p&gt;Ankh: &lt;hieroglyph-tag&gt;anx&lt;/hieroglyph-tag&gt;&lt;/p&gt;
+  &lt;p&gt;Two lines:
+    &lt;hieroglyph-tag&gt;A1
+W24*Z7&lt;/hieroglyph-tag&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Invalid input stays local: &lt;hieroglyph-tag&gt;A999&lt;/hieroglyph-tag&gt;&lt;/p&gt;</textarea>
+    <p id="editor-hint" class="hint">Try changing the text, adding a tag, or entering A999 to see an error.</p>
+  </section>
+  <section class="panel" aria-labelledby="preview-label">
+    <div class="panel-header"><h2 id="preview-label">Rendered HTML</h2></div>
+    <div id="html-preview" class="preview"></div>
+    <p class="hint">Hover a hieroglyph or Tab to reveal Copy MdC and Copy Unicode.</p>
+  </section>
+</main>
+<footer>Powered by <a href="https://github.com/nederhof/hierojax">HieroJax</a> · <a href="https://github.com/arsaccol/hieroglyph-tags">Source and license</a></footer>
 <script type="module">
-  document.querySelector('#source').addEventListener('input', event => {
-    document.querySelector('#editable').textContent = event.target.value
+  import { defineEgyptianHieroglyph } from '../dist/index.js'
+  defineEgyptianHieroglyph()
+  const editor = document.querySelector('#html-source')
+  const preview = document.querySelector('#html-preview')
+  const initialHtml = editor.value
+  // Preview markup, keeping executable content and page-level elements out.
+  const allowedTags = new Set(['hieroglyph-tag', 'p', 'div', 'span', 'section', 'article',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'b', 'i', 'u', 's', 'small',
+    'sub', 'sup', 'br', 'hr', 'pre', 'code', 'blockquote', 'ul', 'ol', 'li', 'dl', 'dt',
+    'dd', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption'])
+  function renderPreview() {
+    const template = document.createElement('template')
+    template.innerHTML = editor.value
+    for (const element of template.content.querySelectorAll('*')) {
+      if (!allowedTags.has(element.localName)) { element.remove(); continue }
+      for (const attribute of [...element.attributes]) {
+        if (!['class', 'title', 'lang', 'dir', 'colspan', 'rowspan'].includes(attribute.name)) {
+          element.removeAttribute(attribute.name)
+        }
+      }
+    }
+    preview.replaceChildren(template.content)
+  }
+  editor.addEventListener('input', renderPreview)
+  document.querySelector('#reset').addEventListener('click', () => {
+    editor.value = initialHtml
+    renderPreview()
+    editor.focus()
   })
+  renderPreview()
 </script>
 </html>

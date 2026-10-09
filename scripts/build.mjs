@@ -8,4 +8,4 @@ const result = spawnSync('tsc', [], { stdio: 'inherit', shell: process.platform 
 if (result.status !== 0) process.exit(result.status ?? 1)
 await mkdir('dist/demo', { recursive: true })
 const demo = await readFile('demo/index.html', 'utf8')
-await writeFile('dist/demo/index.html', demo.replace('../dist/index.js', '../index.js'))
+await writeFile('dist/demo/index.html', demo.replaceAll('../dist/index.js', '../index.js'))
