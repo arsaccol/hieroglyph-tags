@@ -3,6 +3,8 @@
 Write Manuel de Codage directly in HTML and render it as properly composed
 Egyptian hieroglyphs. Native Web Components, powered by HieroJax.
 
+[Try the live demo](https://arsaccol.github.io/hieroglyph-tags/).
+
 ```html
 <script type="module" src="./node_modules/hieroglyph-tags/dist/index.js"></script>
 <p>The inscription reads <hieroglyph-tag>A1:O1</hieroglyph-tag>.</p>
