@@ -8,7 +8,7 @@ see the rendered hieroglyphs side by side.
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/npm/hieroglyph-tags@0.1.0/dist/index.js">
+  src="https://cdn.jsdelivr.net/npm/hieroglyph-tags@0.1.1/dist/index.js">
 </script>
 
 <p>The inscription reads <hieroglyph-tag>A1:O1</hieroglyph-tag>.</p>
