@@ -7,13 +7,18 @@ Egyptian hieroglyphs. Native Web Components, powered by HieroJax.
 see the rendered hieroglyphs side by side.
 
 ```html
-<script type="module" src="./node_modules/hieroglyph-tags/dist/index.js"></script>
+<script type="module"
+  src="https://cdn.jsdelivr.net/npm/hieroglyph-tags@0.1.0/dist/index.js">
+</script>
+
 <p>The inscription reads <hieroglyph-tag>A1:O1</hieroglyph-tag>.</p>
 ```
 
-Serve the page over HTTP. The same module URL works from a CDN: use the package's
-`dist/index.js` URL and retain the package's `vendor/` assets at their relative
-paths. No framework or additional stylesheet is required.
+The version-pinned jsDelivr URL loads the library, HieroJax runtime, and
+NewGardiner font automatically. No framework, bundler, or additional stylesheet
+is required. Serve your page over HTTP or HTTPS.
+
+For applications with a bundler, install the [npm package](https://www.npmjs.com/package/hieroglyph-tags):
 
 ```sh
 npm install hieroglyph-tags
